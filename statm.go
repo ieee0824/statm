@@ -1,6 +1,7 @@
 package statm
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -17,6 +18,14 @@ type Statm struct {
 	Lrs    int
 	Drs    int
 	Dt     int
+}
+
+func (s Statm) String() string {
+	bin, err := json.Marshal(s)
+	if err != nil {
+		return ""
+	}
+	return string(bin)
 }
 
 func readStatm(pid int) (string, error) {
